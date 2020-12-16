@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css')}}" />
+<title></title>
+</head>
+<body>
+<div class="container">
+    <div id="firstDiv" class="header">
+        <h1 class="title">to-do list</h1>
+    </div>
+    <div class="box"><input type="text" class="maininput" id="input" placeholder="Type something here..." name="firstname" maxlength="28"/> 
+        <button id="newTask" type="button" class="button">+</button>
+    </div>
+    <ul id="myUL" class="list">
+    {% for item in todo_list %}
+        <li>
+            {{item}}
+            <button type="button" onclick="deleteItem(this)" class="delbutton">-</button>
+            <button type="button" onclick="openModal(this)" class="updateButton">update</button>
+        </li> 
+    {% endfor %}    
+    </ul>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <input id="newValue" type="text" placeholder="Type new value here..." maxlength="28"/>
+            <button type="button" onclick="updateItem()" class="button">Update</button>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='logic.js') }}"></script>
+</html>
